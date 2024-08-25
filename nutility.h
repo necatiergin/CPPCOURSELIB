@@ -8,8 +8,72 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <forward_list>
+#include <set>
 
 
+std::ostream& dash_line(std::ostream& os);
+
+
+/* generic components */
+
+template<typename T, typename U>
+std::ostream& operator<<(std::ostream& os, const std::pair<T, U>& p)
+{
+	return os << "[" << p.first << ", " << p.second << "]";
+}
+//--------------------------------------------------
+//--------------------------------------------------
+template<typename C, typename F>
+void rfill(C& c, size_t n, F frand)
+{
+	while (c.size() < n)
+		c.insert(c.end(), frand());
+}
+
+//--------------------------------------------------
+//--------------------------------------------------
+
+template<typename T, typename F>
+void rfill(std::forward_list<T>& c, std::size_t n, F frand)
+{
+	while (n--)
+		c.insert_after(c.before_begin(), frand());
+}
+
+
+template<typename C>
+void print(const C& c, const char* p = " ", std::ostream& os = std::cout)
+{
+	for (const auto& elem : c)
+		os << elem << p;
+	os << dash_line;
+}
+//--------------------------------------------------
+//--------------------------------------------------
+
+template<typename InIter>
+void print(InIter beg, InIter end, const char* p = " ", std::ostream& os = std::cout)
+{
+	while (beg != end) {
+		os << *beg++ << p;
+	}
+	os << dash_line;
+}
+
+//--------------------------------------------------
+//--------------------------------------------------
+
+template<typename C, typename F>
+void fcs(C& c, std::size_t n, F func)
+{
+	std::set<typename C::value_type> s;
+	while (s.size() != n)
+		s.insert(func());
+	c.assign(s.begin(), s.end());
+}
+//--------------------------------------------------
+//--------------------------------------------------
 
 /**
      * @brief Provides access to the underlying random number generator.
@@ -189,6 +253,25 @@ constexpr [[nodiscard]] bool isprime(int val) noexcept
 	return true;
 }
 
+constexpr [[nodiscard]] int ndigit(int val)
+{
+	if (val == 0)
+		return 1;
+
+	int digit_count = 0;
+
+	while (val != 0) {
+		val /= 10;
+		++digit_count;
+	}
+
+	return digit_count;
+}
+
+std::ostream& dash_line(std::ostream& os)
+{
+	return os << "\n-----------------------------------------------------------------------------\n";
+}
 
 //file operations
 
