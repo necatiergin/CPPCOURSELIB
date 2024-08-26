@@ -510,7 +510,7 @@ constexpr [[nodiscard]] int ndigit(int val)
  * Content
  * @endcode
  */
-std::ostream& dash_line(std::ostream& os)
+inline std::ostream& dash_line(std::ostream& os)
 {
 	return os << "\n-----------------------------------------------------------------------------\n";
 }
@@ -523,21 +523,11 @@ std::ostream& dash_line(std::ostream& os)
 
 //file operations
 
-inline [[nodiscard]] std::string get_str_from_file(const std::string& filename)
-{
-	std::ifstream ifs{ filename };
-	if (!ifs) {
-		std::cerr << "cannot open file\n";
-		std::exit(EXIT_FAILURE);
-	}
-	std::ostringstream oss;
-	oss << ifs.rdbuf();
-
-	return oss.str();
-}
 
 
-[[nodiscard]] std::ifstream open_text_file(const std::string& filename)
+
+
+inline [[nodiscard]] std::ifstream open_text_file(const std::string& filename)
 {
 	std::ifstream ifs{ filename };
 	if (!ifs) {
@@ -585,3 +575,32 @@ inline [[nodiscard]] std::ofstream create_binary_file(const std::string& filenam
 }
 
 
+//------------------------------------------------------
+//------------------------------------------------------
+
+
+/**
+ * @brief Reads the entire content of a text file into a std::string.
+ *
+ * This function opens the specified text file using the `open_text_file` function,
+ * reads its content, and returns it as a `std::string`.
+ *
+ * @param filename The name of the file to be read.
+ *
+ * @return A `std::string` containing the content of the file.
+ *
+ * @throws std::ifstream::failure If the file could not be opened or read.
+ *
+ * @note The file is opened in text mode. Ensure that the file exists and is accessible.
+ *
+ * @warning This function does not handle file encoding issues or very large files
+ * which may require more efficient reading methods.
+ */
+inline [[nodiscard]] std::string get_str_from_file(const std::string& filename)
+{
+	std::ifstream ifs{ open_text_file(filename) };
+	std::ostringstream oss;
+	oss << ifs.rdbuf();
+
+	return oss.str();
+}
