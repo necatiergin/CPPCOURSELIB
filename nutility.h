@@ -489,10 +489,37 @@ constexpr [[nodiscard]] int ndigit(int val)
 //------------------------------------------------------
 
 
+/**
+ * @brief An ostream manipulator that inserts a line of dash characters into the stream.
+ *
+ * The `dash_line` manipulator outputs a line of dash characters, followed by newline characters,
+ * to the given output stream. It is commonly used to create a visual separation or underline
+ * in the output for better readability.
+ *
+ * @param os The output stream to which the line of dash characters is inserted.
+ * @return A reference to the modified output stream.
+ *
+ * @example
+ * @code
+ * std::cout << "Header" << dash_line << "Content" << std::endl;
+ * @endcode
+ * This will produce:
+ * @code
+ * Header
+ * -----------------------------------------------------------------------------
+ * Content
+ * @endcode
+ */
 std::ostream& dash_line(std::ostream& os)
 {
 	return os << "\n-----------------------------------------------------------------------------\n";
 }
+
+
+//------------------------------------------------------
+//------------------------------------------------------
+
+
 
 //file operations
 
