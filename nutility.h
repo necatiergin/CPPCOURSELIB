@@ -88,8 +88,44 @@ void rfill(std::forward_list<T>& c, std::size_t n, F frand)
 }
 
 
-template<typename C>
-void print(const C& c, const char* p = " ", std::ostream& os = std::cout)
+//------------------------------------------------------
+//------------------------------------------------------
+/**
+ * @brief Inserts the elements of a container into an output stream, separated by a specified delimiter.
+ *
+ * This function template iterates over the elements of a container and inserts them into an
+ * output stream, with each element followed by a specified delimiter. After all elements
+ * are inserted, a line of dashes is printed to the stream.
+ *
+ * @tparam Collection The type of the container whose elements will be printed. The container
+ *         must support iteration, and its elements must be streamable with `operator<<`.
+ * @param c The container whose elements are to be printed.
+ * @param psep A C-string used as a delimiter between the elements in the output stream.
+ *             The default is a single space `" "`.
+ * @param os The output stream to which the elements and the dash line will be printed.
+ *           The default is `std::cout`.
+ *
+ * @example
+ * @code
+ * std::vector<int> vec = {1, 2, 3, 4, 5};
+ * print(vec, ", "); // Outputs: 1, 2, 3, 4, 5 and then a line of dashes
+ * @endcode
+ */
+template<typename Collection>
+void print(const Collection& c, const char* psep = " ", std::ostream& os = std::cout)
+{
+	for (const auto& elem : c)
+		os << elem << psep;
+	os << dash_line;
+}
+
+//------------------------------------------------------
+//------------------------------------------------------
+
+
+
+template<typename Collection>
+void print(const Collection& c, const char* psep = " ", std::ostream& os = std::cout)
 {
 	for (const auto& elem : c)
 		os << elem << p;
@@ -98,14 +134,38 @@ void print(const C& c, const char* p = " ", std::ostream& os = std::cout)
 //--------------------------------------------------
 //--------------------------------------------------
 
+/**
+ * @brief Inserts a range of elements into an output stream, separated by a specified delimiter.
+ *
+ * This function template iterates over a range of elements defined by two input iterators
+ * and inserts them into an output stream. Each element is followed by a specified delimiter.
+ * After all elements are inserted, a line of dashes is printed to the stream.
+ *
+ * @tparam InIter The type of the input iterators defining the range. The elements pointed
+ *         to by the iterators must be streamable with `operator<<`.
+ * @param beg The beginning input iterator of the range to be printed.
+ * @param end The ending input iterator of the range to be printed.
+ * @param psep A C-string used as a delimiter between the elements in the output stream.
+ *             The default is a single space `" "`.
+ * @param os The output stream to which the elements and the dash line will be printed.
+ *           The default is `std::cout`.
+ *
+ * @example
+ * @code
+ * std::vector<int> vec = {1, 2, 3, 4, 5};
+ * print(vec.begin(), vec.end(), ", "); // Outputs: 1, 2, 3, 4, 5 and then a line of dashes
+ * @endcode
+ */
+
 template<typename InIter>
-void print(InIter beg, InIter end, const char* p = " ", std::ostream& os = std::cout)
+void print(InIter beg, InIter end, const char* psep = " ", std::ostream& os = std::cout)
 {
 	while (beg != end) {
-		os << *beg++ << p;
+		os << *beg++ << psep;
 	}
 	os << dash_line;
 }
+
 
 //--------------------------------------------------
 //--------------------------------------------------
