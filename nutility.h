@@ -184,6 +184,11 @@ inline [[nodiscard]] std::mt19937& urng()
     return eng;
 }
 
+
+//------------------------------------------------------
+//------------------------------------------------------
+
+
 /**
  * @class Irand
  * @brief A class for generating random integers within a specified range.
@@ -235,17 +240,53 @@ private:
 //------------------------------------------------------
 
 
+/**
+ * @brief A class for generating random double-precision floating-point numbers within a specified range.
+ *
+ * The `Drand` class provides functionality to generate random `double` values uniformly distributed
+ * within a given range [dmin, dmax]. The range is specified during object construction.
+ */
 class Drand {
 public:
-    Drand() = default;
-    Drand(double dmin, double dmax) : m_dist{ dmin, dmax } {}
-    [[nodiscard]] double operator()()
-    {
-        return m_dist(urng());
-    }
+	/**
+	 * @brief Default constructor.
+	 *
+	 * Constructs a `Drand` object without initializing the distribution range.
+	 * The range must be specified before using the object to generate random numbers.
+	 */
+	Drand() = default;
+
+	/**
+	 * @brief Constructs a `Drand` object with a specified range.
+	 *
+	 * Initializes the random number generator to produce double-precision floating-point numbers
+	 * within the range [dmin, dmax].
+	 *
+	 * @param dmin The minimum value of the range.
+	 * @param dmax The maximum value of the range.
+	 */
+	Drand(double dmin, double dmax) : m_dist{ dmin, dmax } {}
+
+	/**
+	 * @brief Generates a random double within the specified range.
+	 *
+	 * Returns a random double value uniformly distributed within the range [dmin, dmax]
+	 * specified during the construction of the `Drand` object.
+	 *
+	 * @return A random double value within the range [dmin, dmax].
+	 *
+	 * @note The function is marked as `[[nodiscard]]`, indicating that the caller should not ignore the returned value.
+	 */
+	[[nodiscard]] double operator()()
+	{
+		return m_dist(urng());
+	}
+
 private:
-    std::uniform_real_distribution<double> m_dist;
+	std::uniform_real_distribution<double> m_dist;  ///< Distribution for generating random doubles in the specified range.
 };
+
+
 
 /**
  * @brief Generates a random name from a predefined list of names.
