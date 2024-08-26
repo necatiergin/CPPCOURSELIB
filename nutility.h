@@ -326,6 +326,27 @@ inline [[nodiscard]] std::string rfname()
 
 }
 
+//------------------------------------------------------
+//------------------------------------------------------
+/**
+ * @brief Determines if a given integer is a prime number.
+ *
+ * This `constexpr` function checks whether a given integer is a prime number.
+ * A prime number is a natural number greater than 1 that is not divisible by any
+ * number other than 1 and itself. The function optimizes the check by initially
+ * handling small divisors and then only testing odd numbers up to the square root of the input.
+ *
+ * @param val The integer value to be checked for primality.
+ * @return `true` if the input value is a prime number, `false` otherwise.
+ *
+ * @note The function is marked as `noexcept`, indicating it does not throw exceptions,
+ *       and as `[[nodiscard]]`, which encourages the caller to use the return value.
+ *
+ * @example
+ * @code
+ * constexpr bool result = isprime(29); // result will be true
+ * @endcode
+ */
 constexpr [[nodiscard]] bool isprime(int val) noexcept
 {
 	if (val < 2)
@@ -347,6 +368,8 @@ constexpr [[nodiscard]] bool isprime(int val) noexcept
 	return true;
 }
 
+//------------------------------------------------------
+//------------------------------------------------------
 constexpr [[nodiscard]] int ndigit(int val)
 {
 	if (val == 0)
