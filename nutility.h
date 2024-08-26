@@ -537,9 +537,8 @@ inline [[nodiscard]] std::ifstream open_text_file(const std::string& filename)
 	return ifs;
 }
 
-
-
-
+//------------------------------------------------------
+//------------------------------------------------------
 inline [[nodiscard]] std::ofstream create_text_file(const std::string& filename)
 {
 	std::ofstream ofs{ filename };
@@ -551,7 +550,8 @@ inline [[nodiscard]] std::ofstream create_text_file(const std::string& filename)
 	return ofs;
 }
 
-
+//------------------------------------------------------
+//------------------------------------------------------
 inline [[nodiscard]] std::ifstream open_binary_file(const std::string& filename)
 {
 	std::ifstream ifs{ filename, std::ios::binary };
@@ -562,7 +562,27 @@ inline [[nodiscard]] std::ifstream open_binary_file(const std::string& filename)
 	return ifs;
 }
 
-
+//------------------------------------------------------
+//------------------------------------------------------
+/**
+ * @brief Creates a binary file and returns an std::ofstream object for it.
+ *
+ * This function attempts to create a binary file with the specified name and
+ * returns an `std::ofstream` object that can be used to write to the file.
+ * If the file cannot be created, a `std::runtime_error` is thrown.
+ *
+ * @param filename The name of the file to be created.
+ *
+ * @return An `std::ofstream` object that controls the newly created binary file.
+ *
+ * @throws std::runtime_error If the file cannot be created.
+ *
+ * @note The file is opened in binary mode (`std::ios::binary`), so no
+ * conversions or translations of the data will occur.
+ *
+ * @warning Ensure that the file name is valid and that you have appropriate
+ * permissions to create files in the specified directory.
+ */
 inline [[nodiscard]] std::ofstream create_binary_file(const std::string& filename)
 {
 	std::ofstream ofs{ filename, std::ios::binary };
@@ -573,7 +593,6 @@ inline [[nodiscard]] std::ofstream create_binary_file(const std::string& filenam
 
 	return ofs;
 }
-
 
 //------------------------------------------------------
 //------------------------------------------------------
