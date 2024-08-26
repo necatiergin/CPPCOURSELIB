@@ -408,9 +408,26 @@ constexpr [[nodiscard]] bool isprime(int val) noexcept
 
 //------------------------------------------------------
 //------------------------------------------------------
-
-
-
+/**
+ * @brief Calculates the number of digits in an integer.
+ *
+ * This `constexpr` function determines the number of digits in the given integer `val`.
+ * It handles both positive and negative integers, as well as zero. For a value of zero,
+ * the function returns 1, since zero is considered to have one digit.
+ *
+ * @param val The integer whose digits are to be counted.
+ * @return An `int` representing the number of digits in the input integer.
+ *
+ * @note The function is marked as `[[nodiscard]]`, indicating that the caller should not ignore the returned value.
+ *
+ * @example
+ * @code
+ * int num_digits = ndigit(12345); // Returns 5
+ * int num_digits_negative = ndigit(-987); // Returns 3
+ * int num_digits_zero = ndigit(0); // Returns 1
+ * std::cout << "Digits: " << num_digits << std::endl;
+ * @endcode
+ */
 constexpr [[nodiscard]] int ndigit(int val)
 {
 	if (val == 0)
@@ -425,6 +442,11 @@ constexpr [[nodiscard]] int ndigit(int val)
 
 	return digit_count;
 }
+
+
+//------------------------------------------------------
+//------------------------------------------------------
+
 
 std::ostream& dash_line(std::ostream& os)
 {
