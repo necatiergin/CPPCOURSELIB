@@ -122,18 +122,6 @@ void print(const Collection& c, const char* psep = " ", std::ostream& os = std::
 //------------------------------------------------------
 //------------------------------------------------------
 
-
-
-template<typename Collection>
-void print(const Collection& c, const char* psep = " ", std::ostream& os = std::cout)
-{
-	for (const auto& elem : c)
-		os << elem << p;
-	os << dash_line;
-}
-//--------------------------------------------------
-//--------------------------------------------------
-
 /**
  * @brief Inserts a range of elements into an output stream, separated by a specified delimiter.
  *
