@@ -239,7 +239,6 @@ private:
 //------------------------------------------------------
 //------------------------------------------------------
 
-
 /**
  * @brief A class for generating random double-precision floating-point numbers within a specified range.
  *
@@ -285,9 +284,8 @@ public:
 private:
 	std::uniform_real_distribution<double> m_dist;  ///< Distribution for generating random doubles in the specified range.
 };
-
-
-
+//------------------------------------------------------
+//------------------------------------------------------
 /**
  * @brief Generates a random name from a predefined list of names.
  *
@@ -344,9 +342,6 @@ inline [[nodiscard]] std::string random_name()
 
 	return pnames[Irand(0, (int)(std::size(pnames)) - 1)()];
 }
-
-
-
 //--------------------------------------------------
 //--------------------------------------------------
 /**
@@ -403,8 +398,6 @@ inline [[nodiscard]] std::string random_surname()
 
 	return pfnames[Irand(0, (int)(std::size(pfnames)) - 1)()];
 }
-
-
 //------------------------------------------------------
 //------------------------------------------------------
 /**
@@ -483,12 +476,8 @@ constexpr [[nodiscard]] int ndigit(int val)
 
 	return digit_count;
 }
-
-
 //------------------------------------------------------
 //------------------------------------------------------
-
-
 /**
  * @brief An ostream manipulator that inserts a line of dash characters into the stream.
  *
@@ -514,18 +503,10 @@ inline std::ostream& dash_line(std::ostream& os)
 {
 	return os << "\n-----------------------------------------------------------------------------\n";
 }
-
-
 //------------------------------------------------------
 //------------------------------------------------------
 
-
-
-//file operations
-
-
-
-
+/*   file operations   */
 
 inline [[nodiscard]] std::ifstream open_text_file(const std::string& filename)
 {
@@ -536,7 +517,6 @@ inline [[nodiscard]] std::ifstream open_text_file(const std::string& filename)
 
 	return ifs;
 }
-
 //------------------------------------------------------
 //------------------------------------------------------
 /**
@@ -580,7 +560,6 @@ inline [[nodiscard]] std::ifstream open_binary_file(const std::string& filename)
 
 	return ifs;
 }
-
 //------------------------------------------------------
 //------------------------------------------------------
 /**
@@ -615,8 +594,6 @@ inline [[nodiscard]] std::ofstream create_binary_file(const std::string& filenam
 
 //------------------------------------------------------
 //------------------------------------------------------
-
-
 /**
  * @brief Reads the entire content of a text file into a std::string.
  *
